@@ -19,6 +19,23 @@ Why am I doing this?
 
 So here there's this tiny markdown parser that works natively, wherever *C* is available, based on a single pass, with recursive calls, for nested parsing, output normalization, and cross platform features, wherever supported.
 
+What kind of challenges did I encounter in writing this software?
+
+  * ensure that all commands actually work cross platform (macOS, Windows, Linux)
+  * ensure that nested parts of the content can be recursively parsed within their boundaries
+  * ensure that there are no memory leaks whatsoever, despite the huge amount of strings manipulation and operations
+  * implements a lot of strings functionalities such as `slice`, `trim_start`, `trim_end`, `trim` combined, and `index_of` with multiple chars
+  * try to normalize the outcome in every terminal, including a forced homogenous multiline code background and color
+  * understand how piping works in C, beside reading documents as explained during the training
+  * keeping performance under control, through a single pass with look ahead and look behind when needed
+  * ensure that in the worst case scenario, the layout is cleaned up once the program exits
+
+Who would actually benefit from this project?
+
+  * anyone writing CLI with a desire to provide better documentation within the `--help` flag
+  * anyone using CLI most of the time, happy to have a visually enhanced experience
+  * anyone using any other programming language with a desire to show better outputs in CLI
+
 
 ## Tests                     
 
