@@ -66,7 +66,7 @@ Who would actually benefit from this project?
     ```
 ````
 
-  * `# Header 1` or `# Header X` text
+  * `# Header 1` or `## Header X` text
 
 ```
     # Header 1

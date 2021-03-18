@@ -561,7 +561,7 @@ void show(const char *buffer, int start, int end)
 
 char *str(int length)
 {
-    char *string = (char *) malloc((length + 1)    * sizeof(char));
+    char *string = (char *) malloc((length + 1) * sizeof(char));
     if (string == NULL)
     {
         out_of_memory();
