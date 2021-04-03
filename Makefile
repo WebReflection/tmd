@@ -1,4 +1,4 @@
-# Simply create a tmd executable
+DESTDIR := "/usr/local/bin"
 
 all:
 	gcc -Os -o tmd tmd.c
@@ -13,3 +13,6 @@ style:
 
 heap:
 	valgrind ./tmd README.md
+
+install:
+	cp ./tmd $(DESTDIR)
