@@ -102,7 +102,9 @@ int main(int argc, char *argv[])
         FILE *fd = fopen(argv[1], "r");
         if (fd == NULL)
         {
-            out_of_memory();
+            markdown(strlen(argv[1]), argv[1], 0);
+            fprintf(stdout, "%s\n", RESET);
+            return 0;
         }
         else
         {
@@ -137,9 +139,10 @@ int main(int argc, char *argv[])
         char *how_to = "\n\
 # Tiny Markdown        \n\
 \n\
- *usage* -# asd-\n\
+ *usage*\n\
 \n\
 ```\n\
+  tmd 'some *markdown*'\n\
   tmd file.md\n\
   cat file.md | tmd\n\
 ```\n\

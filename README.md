@@ -1,8 +1,15 @@
 # tmd - Tiny Markdown       
 
+## Available in AUR
+
+This module can now be installed via AUR as [tmd-git package](https://aur.archlinux.org/packages/tmd-git/).
+
+
+
 #### Video Demo:               
 
 [On YouTube](https://youtu.be/jLmFxWflcDo)
+
 
 
 #### Description:              
@@ -109,6 +116,9 @@ cat file.md | ./tmd
 
 # or specify a file to parse
 ./tmd file.md
+
+# or simply pass some content
+./tmd 'Hello *World*!'
 ```
 
 The parsed output will be shown right away.
