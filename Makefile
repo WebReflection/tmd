@@ -1,4 +1,4 @@
-DESTDIR := "/usr/local/bin"
+PREFIX := "/usr/local"
 
 all:
 	gcc -Os -o tmd tmd.c
@@ -15,4 +15,4 @@ heap:
 	valgrind ./tmd README.md
 
 install:
-	cp ./tmd $(DESTDIR)
+	cp ./tmd $(PREFIX)/bin
