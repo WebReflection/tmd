@@ -1,5 +1,7 @@
 # tmd - Tiny Markdown       
 
+<sup>**Social Media Photo by [Pinakeen Bhatt](https://unsplash.com/@pinakeen) on [Unsplash](https://unsplash.com/)**</sup>
+
 ## Available in AUR
 
 This module can now be installed via AUR as [tmd-git package](https://aur.archlinux.org/packages/tmd-git/).
