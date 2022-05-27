@@ -7,6 +7,8 @@
 
 // Special shell/terminal chars that are *mostly* cross platform
 #define BULLET "•"
+#define BOX_CHECKED "☑"
+#define BOX_UNCHECKED "☐"
 #define CLREOL "\x1B[K"
 #define RESET "\x1b[0m"
 #define QUOTE "\x1B[100m \x1B[49m"
@@ -47,6 +49,7 @@ int is_inline_space(char c);
 int is_space(char c);
 
 // String utils
+int is_checkbox(const char *buffer, int i);
 int index_of(const char *buffer, int start, int length, const char *chunk, int len, int break_on_line);
 void multiline(const char *buffer);
 char *slice(const char *str, int start, int end);
@@ -147,6 +150,10 @@ int main(int argc, char *argv[])
   cat file.md | tmd\n\
 ```\n\
 \n\
+ * bullets list and \n\
+- [ ] checkboxes\n\
+- [x] included\n\
+\n\
  -by Andrea Giammarchi-\n\
 \n";
         tmd(how_to);
@@ -189,6 +196,24 @@ int index_of(const char *buffer, int start, int length, const char *chunk, int l
     }
     free(buff);
     return -1;
+}
+
+int is_checkbox(const char *buffer, int i)
+{
+    if (
+        buffer[i + 1] == ' ' &&
+        buffer[i + 2] == '[' &&
+        buffer[i + 4] == ']' &&
+        buffer[i + 5] == ' '
+    ) {
+        switch (buffer[i + 3]) {
+            case ' ':
+            case 'x':
+            case 'X':
+                return 1;
+        }
+    }
+    return 0;
 }
 
 int is_new_line(char c)
@@ -489,6 +514,13 @@ void markdown(int length, char *buffer, int nested)
                         fprintf(stdout, "%s", BULLET);
                         start = i + 1;
                     }
+                }
+                // this is a bail out from *bold* but it could be a list
+                else if (current == '-' && !nested && (i + 6) < length && is_checkbox(buffer, i))
+                {
+                    show(buffer, start, i);
+                    fprintf(stdout, " %s", buffer[i + 3] == ' ' ? BOX_UNCHECKED : BOX_CHECKED);
+                    start = i + 5;
                 }
                 break;
             }
