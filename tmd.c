@@ -353,7 +353,7 @@ void markdown(int length, char *buffer, int nested)
                 }
                 show(buffer, start, i);
 
-                char *chunk = slice(buffer, j, nl);
+                char *chunk = slice(buffer, j, nl++);
                 // # Bold Header + new line
                 if (code == 1)
                 {
